@@ -1,23 +1,37 @@
 Table words;
-String words_file = "verbs.tsv";
-Integer line = 0;
-Integer list_length;
+PImage imgtest;
+// String words_file = "verbs.tsv";
+// Integer line = 0;
+// Integer list_length;
 
 void setup() {
-  words = loadTable(words_file);
-  list_length = words.getRowCount();
-  words.removeTokens("\"");
+  // words = loadTable(words_file);
+  // list_length = words.getRowCount();
+  // words.removeTokens("\"");
   
-  size(1280,1024);
+  size(1920,1080);
   background(255);
+  
+  imgtest = loadImage("test.png");
+  image(imgtest, 0, 0);
+  
+  color bg = get(0, 0);
+  background(bg);
+  image(imgtest, 50, height/2 - 256, 512, 512);
+  
+  
+  println(get(0, 0));
+  println(get(51, 51));
+  println(get(100, 100));
 
 }
 
 void draw() {
-  background(255);
+  // background(255);
   
-  line = frameCount - 1;
+  // line = frameCount - 1;
   
+  /*
   if (line < list_length) {
     var word_ru = words.getString(line, 0);
     var word_he_nekudot = words.getString(line, 1);
@@ -52,7 +66,7 @@ void draw() {
     text(root, width/2 + 250, height/2 + 250);
 
 
-    var t = createFont("Verdana", 24*2, true);
+    var t = createFont("Verdana", 24*3, true);
     textFont(t);
     fill(240);
     textAlign(CENTER, CENTER);
@@ -62,5 +76,7 @@ void draw() {
     
     // delay(1000);
   }
-
+   
+  */
+    
 }
