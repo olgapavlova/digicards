@@ -33,6 +33,9 @@ color FC_MAIN = color(64, 7, 5);
 color FC_SUB = color(128, 128, 128);
 color FC_HIDDEN = color(255, 235, 208);
 
+// Store configuration
+String PATH_DATA = "/Users/op/dev/digicards/.data/";
+String PATH_DIR = PATH_DATA + SCREEN_WIDTH + "x" + SCREEN_HEIGHT + "/"; 
 
 /*
 //////////////////////////////////////////////////
@@ -68,7 +71,7 @@ void draw() {
     
     draw_word(line, shift);
     
-    saveFrame("#####.jpg");  
+    saveFrame(PATH_DIR + "#####.jpg");  
     
   }
 
