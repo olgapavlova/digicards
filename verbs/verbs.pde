@@ -1,6 +1,6 @@
 // Screen configuration
-Integer SCREEN_WIDTH = 1920;
-Integer SCREEN_HEIGHT = 1080;
+Integer SCREEN_WIDTH = 1280;
+Integer SCREEN_HEIGHT = 1024;
 
 // Dictionary configuration
 String DICTIONARY_FILE = "verbs.tsv";
@@ -59,16 +59,21 @@ void draw() {
   var line = frameCount - 1;
   
   if (line < dictionary_length) {
+    var code = dictionary.getString(line, T_CODE);
+    PImage img = null;
     
-    var is_picture = dictionary.getString(line, T_PICTURE);
+    try {
+      img = loadImage(code + ".png");
+    } catch (Exception e) {
+      println(e);
+    }
 
     var shift = 0;
-    if (is_picture.equals("TRUE")) {
+    if (img != null) {
       shift = round(SCREEN_HEIGHT/5);
-      var code = dictionary.getString(line, T_CODE);
-      draw_picture(code);
+      draw_picture(img);      
     }
-    
+        
     draw_word(line, shift);
     
     saveFrame(PATH_DIR + "#####.jpg");  
@@ -118,20 +123,15 @@ void draw_word(int line, int shift) {
               
 }
 
-void draw_picture(String name) {
-  String[] filename = new String[2];
-  filename[0] = name;
-  filename[1] = ".png";
-  
-  String file = join(filename, "");
-  PImage img = loadImage(file);
+void draw_picture(PImage img) {
   image(img, 0, 0);
   
   color bg = get(5, 5);
   background(bg);
   
-  image(img, round(SCREEN_HEIGHT/20), height/2 - round(SCREEN_HEIGHT/4), SCREEN_HEIGHT/2, SCREEN_HEIGHT/2);
-
+  image(img,
+        round(SCREEN_HEIGHT/20), height/2 - round(SCREEN_HEIGHT/4),
+        SCREEN_HEIGHT/2, SCREEN_HEIGHT/2);
 }
 
 String text_before_semicolon(String text) {
