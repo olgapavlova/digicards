@@ -1,6 +1,6 @@
 // Screen configuration
-Integer SCREEN_WIDTH = 1280;
-Integer SCREEN_HEIGHT = 1024;
+Integer SCREEN_WIDTH = 1920;
+Integer SCREEN_HEIGHT = 1080;
 
 // Dictionary configuration
 String DICTIONARY_FILE = "verbs.tsv";
@@ -62,12 +62,14 @@ void draw() {
     var code = dictionary.getString(line, T_CODE);
     PImage img = null;
     
+    // Check if picture exists
     try {
       img = loadImage(code + ".png");
     } catch (Exception e) {
-      println(e);
+      // 
     }
 
+    // Shift, if picture exists; mix template and logic, nice to be improved
     var shift = 0;
     if (img != null) {
       shift = round(SCREEN_HEIGHT/5);
@@ -96,7 +98,7 @@ void draw_word(int line, int shift) {
     var word_translate  = dictionary.getString(line, T_TRANSLATE);
     var word_nekudot    = dictionary.getString(line, T_NEKUDOT);
     var word_verb       = dictionary.getString(line, T_VERB);
-    var word_binyan     = dictionary.getString(line, T_BINYAN);
+    // var word_binyan     = dictionary.getString(line, T_BINYAN);
     var word_past3      = dictionary.getString(line, T_PAST3);
     var word_root       = dictionary.getString(line, T_ROOT);
 
