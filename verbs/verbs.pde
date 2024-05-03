@@ -1,6 +1,6 @@
 // Screen configuration
-Integer SCREEN_WIDTH = 1920;
-Integer SCREEN_HEIGHT = 1080;
+Integer SCREEN_WIDTH = 800;
+Integer SCREEN_HEIGHT = 600;
 
 // Dictionary configuration
 String DICTIONARY_FILE = "verbs.tsv";
