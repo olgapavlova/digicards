@@ -1,6 +1,6 @@
 // Screen configuration
-Integer SCREEN_WIDTH = 800;
-Integer SCREEN_HEIGHT = 600;
+Integer SCREEN_WIDTH = 1280;
+Integer SCREEN_HEIGHT = 1024;
 
 // Dictionary configuration
 String DICTIONARY_FILE = "verbs.tsv";
@@ -8,14 +8,15 @@ Table dictionary;
 Integer dictionary_length;
 
 // Table columns configuration
-Integer T_CODE      = 0; // Latin code for pictures and Pealim dictionary
-Integer T_PICTURE   = 1; // True, if there is a picture for this word
-Integer T_TRANSLATE = 2; // Meaning in your language
-Integer T_NEKUDOT   = 3; // In Hebrew, with vowels (nekudot)
-Integer T_VERB      = 4; // In Hebrew, without vowels (pure word)
-Integer T_BINYAN    = 5; // Binyan
-Integer T_PAST3     = 6; // Past, 3rd, he (dictionary form)
-Integer T_ROOT      = 7; // Root (dots as dividers)
+Integer T_READY     = 0; // Ready to study
+Integer T_CODE      = 1; // Latin code for pictures and Pealim dictionary
+Integer T_PICTURE   = 2; // True, if there is a picture for this word
+Integer T_TRANSLATE = 3; // Meaning in your language
+Integer T_NEKUDOT   = 7; // In Hebrew, with vowels (nekudot)
+Integer T_VERB      = 8; // In Hebrew, without vowels (pure word)
+Integer T_BINYAN    = 9; // Binyan
+Integer T_PAST3     = 11; // Past, 3rd, he (dictionary form)
+Integer T_ROOT      = 13; // Root (dots as dividers)
 
 // Style
 String FONT_HEBREW    = "ArialHebrewScholar";
@@ -56,30 +57,32 @@ void setup() {
 void draw() {
   background(255);
   
-  var line = frameCount - 1;
+  var line = frameCount;
   
   if (line < dictionary_length) {
-    var code = dictionary.getString(line, T_CODE);
-    PImage img = null;
+    var ready = dictionary.getString(line, T_READY);
+    if (ready.equals("TRUE")) {
+      var code = dictionary.getString(line, T_CODE);
+      PImage img = null;
     
-    // Check if picture exists
-    try {
-      img = loadImage(code + ".png");
-    } catch (Exception e) {
-      // 
-    }
+      // Check if picture exists
+      try {
+        img = loadImage(code + ".png");
+      } catch (Exception e) {
+        // 
+      }
 
-    // Shift, if picture exists; mix template and logic, nice to be improved
-    var shift = 0;
-    if (img != null) {
-      shift = round(SCREEN_HEIGHT/5);
-      draw_picture(img);      
-    }
+      // Shift, if picture exists; mix template and logic, nice to be improved
+      var shift = 0;
+      if (img != null) {
+        shift = round(SCREEN_HEIGHT/5);
+        draw_picture(img);      
+      }
         
-    draw_word(line, shift);
+      draw_word(line, shift);
     
-    saveFrame(PATH_DIR + "#####.jpg");  
-    
+      saveFrame(PATH_DIR + "#####.jpg");  
+    }
   }
 
 }
