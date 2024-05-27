@@ -1,11 +1,14 @@
 // Screen configuration
-Integer SCREEN_WIDTH = 1280;
-Integer SCREEN_HEIGHT = 1024;
+Integer SCREEN_WIDTH = 800;
+Integer SCREEN_HEIGHT = 600;
 
 // Dictionary configuration
 String DICTIONARY_FILE = "verbs.tsv";
 Table dictionary;
 Integer dictionary_length;
+
+Integer words_to_study = 0;
+Integer words_with_pictures_counter = 0;
 
 // Table columns configuration
 Integer T_READY     = 0; // Ready to study
@@ -30,6 +33,7 @@ Integer LEVEL_SUB   = SCREEN_HEIGHT/2 + round(SCREEN_HEIGHT/10);
 Integer LEVEL_SMALL = SCREEN_HEIGHT/2 + round(SCREEN_HEIGHT/3);
 Integer TAB_LEFT  = SCREEN_WIDTH/2 - round(SCREEN_WIDTH/6);
 Integer TAB_RIGHT = SCREEN_WIDTH/2 + round(SCREEN_WIDTH/6);
+Integer SHIFT_IMG = round(SCREEN_HEIGHT/5);
 color FC_MAIN = color(64, 7, 5);
 color FC_SUB = color(128, 128, 128);
 color FC_HIDDEN = color(255, 235, 208);
@@ -62,6 +66,7 @@ void draw() {
   if (line < dictionary_length) {
     var ready = dictionary.getString(line, T_READY);
     if (ready.equals("TRUE")) {
+      ++words_to_study;
       var code = dictionary.getString(line, T_CODE);
       PImage img = null;
     
@@ -75,14 +80,20 @@ void draw() {
       // Shift, if picture exists; mix template and logic, nice to be improved
       var shift = 0;
       if (img != null) {
-        shift = round(SCREEN_HEIGHT/5);
+        shift = SHIFT_IMG;
         draw_picture(img);      
+      } else {
+        ++words_with_pictures_counter;
       }
         
       draw_word(line, shift);
     
       saveFrame(PATH_DIR + "#####.jpg");  
     }
+  } else if (line == dictionary_length) {
+    println("Всего слов: ", dictionary_length);
+    println("Всего карточек: ", words_to_study);
+    println("Карточек без картинок: ", words_with_pictures_counter);
   }
 
 }
