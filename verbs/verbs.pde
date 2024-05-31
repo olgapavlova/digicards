@@ -1,6 +1,6 @@
 // Screen configuration
-Integer SCREEN_WIDTH = 1920;
-Integer SCREEN_HEIGHT = 1080;
+Integer SCREEN_WIDTH = 1280;
+Integer SCREEN_HEIGHT = 1024;
 
 // Dictionary configuration
 String DICTIONARY_FILE = "verbs.tsv";
@@ -15,11 +15,11 @@ Integer T_READY     = 0; // Ready to study
 Integer T_CODE      = 1; // Latin code for pictures and Pealim dictionary
 Integer T_PICTURE   = 2; // True, if there is a picture for this word
 Integer T_TRANSLATE = 3; // Meaning in your language
-Integer T_NEKUDOT   = 7; // In Hebrew, with vowels (nekudot)
-Integer T_VERB      = 8; // In Hebrew, without vowels (pure word)
-Integer T_BINYAN    = 9; // Binyan
-Integer T_PAST3     = 11; // Past, 3rd, he (dictionary form)
-Integer T_ROOT      = 13; // Root (dots as dividers)
+Integer T_NEKUDOT   = 5; // In Hebrew, with vowels (nekudot)
+Integer T_VERB      = 6; // In Hebrew, without vowels (pure word)
+Integer T_BINYAN    = 10; // Binyan
+Integer T_PAST3     = 9; // Past, 3rd, he (dictionary form)
+Integer T_ROOT      = 11; // Root (dots as dividers)
 
 // Style
 String FONT_HEBREW    = "ArialHebrewScholar";
@@ -36,7 +36,7 @@ Integer TAB_RIGHT = SCREEN_WIDTH/2 + round(SCREEN_WIDTH/6);
 Integer SHIFT_IMG = round(SCREEN_HEIGHT/5);
 color FC_MAIN = color(64, 7, 5);
 color FC_SUB = color(128, 128, 128);
-color FC_HIDDEN = color(255, 235, 208);
+color FC_HIDDEN = color(192, 87, 58);
 
 // Store configuration
 String PATH_DATA = "/Users/op/dev/digicards/.data/";
