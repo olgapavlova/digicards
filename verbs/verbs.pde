@@ -41,8 +41,9 @@ color FC_SUB = color(128, 128, 128);
 color FC_HIDDEN = color(192, 87, 58);
 
 // Store configuration
-String PATH_DATA = "/Users/op/dev/digicards/.data/min/";
-String PATH_DIR = PATH_DATA + SCREEN_WIDTH + "x" + SCREEN_HEIGHT + "/"; 
+String PATH_IMG = "/Users/op/dev/olgapavlova/digicards/img/";
+String PATH_IN = PATH_IMG + "src/";
+String PATH_OUT = PATH_IMG + SCREEN_WIDTH + "x" + SCREEN_HEIGHT + "/"; 
 
 /*
 //////////////////////////////////////////////////
@@ -66,7 +67,7 @@ void draw() {
   var line = frameCount;
   
   if (line < dictionary_length) {
-    var ready = dictionary.getString(line, T_MIN);
+    var ready = dictionary.getString(line, T_PICTURE);
     if (ready.equals("TRUE")) {
       ++words_to_study;
       var code = dictionary.getString(line, T_CODE);
@@ -74,7 +75,7 @@ void draw() {
     
       // Check if picture exists
       try {
-        img = loadImage(code + ".png");
+        img = loadImage(PATH_IN + code + ".png");
       } catch (Exception e) {
         // 
       }
@@ -90,7 +91,7 @@ void draw() {
         
       draw_word(line, shift);
     
-      saveFrame(PATH_DIR + "#####.jpg");  
+      saveFrame(PATH_OUT + "#####.jpg");  
     }
   } else if (line == dictionary_length) {
     println("Всего слов: ", dictionary_length);
